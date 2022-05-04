@@ -1,0 +1,43 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h1 id="title"></h1>
+
+    
+    <div id="post-form-div" class="mb-3">
+        {% if request.user.is_authenticated %}
+        <form id="post-form">
+            {% csrf_token %}
+            <textarea class="form-control" id="post-form-content" rows="3" placeholder="Compose your thoughts here..."></textarea>
+            <button class="btn btn-primary mt-3">New Post</button>
+        </form>
+        {% endif %}
+    </div>
+    
+
+    <div id="profile-div">
+        <div id="profile">
+            <h4 id="profile-title"></h4>
+        </div>
+        
+    </div>
+
+    <div id="posts">
+        <div id="posts-div"></div>
+        <nav aria-label="page-nav">
+            <ul class="pagination">
+                <li class="page-link" id="btn-previous-page">Previous</li>
+                <li class="page-item disabled">
+                    <a class="page-link" id="page-number">1</a>
+                </li>
+                <li class="page-link" id="btn-next-page">Next</li>
+            </ul>
+        </nav>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
+{% endblock %}
